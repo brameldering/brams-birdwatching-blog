@@ -4,7 +4,8 @@ body {
 }
 
 button {
-  padding: 16px;
+  padding: 10px 16px;
+  margin: 0px 10px 0px 0px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   background-color: black;
