@@ -8,7 +8,7 @@ import useUser from "../hooks/useUser";
 import articles from "./article-content";
 
 // let callCountPage = 0;
-// let callCountUseEffect = 1;
+// let callCountUseEffect = 0;
 
 const ArticlePage = () => {
   const [articleInfo, setArticleInfo] = useState({
@@ -21,49 +21,55 @@ const ArticlePage = () => {
 
   const { user, isLoading } = useUser();
 
-  //   callCountPage++;
-  //   console.log("==== after init ArticlePage  ==== " + callCountPage);
-  //   console.log("articleInfo: ");
-  //   console.log(articleInfo);
-  //   console.log("articleId: " + articleName);
-  //   console.log("user: ");
-  //   console.log(user);
-  //   console.log("isLoading " + isLoading);
-  //   console.log("");
+  // callCountPage++;
+  // console.log("==== after init ArticlePage  ==== " + callCountPage);
+  // console.log("articleInfo: ");
+  // console.log(articleInfo);
+  // console.log("articleId: " + articleName);
+  // console.log("user: ");
+  // console.log(user);
+  // console.log("isLoading " + isLoading);
+  // console.log("");
 
   useEffect(() => {
     const loadArticleInfo = async () => {
       const token = user && (await user.getIdToken());
       // Test ======================
-      //   console.log("==== user.getIdToken ====");
-      //   console.log("token: ");
-      //   console.log(token);
-      //   console.log("user: ");
-      //   console.log(user);
-      //   console.log("");
+      // console.log("==== user.getIdToken ====");
+      // console.log("token: ");
+      // console.log(token);
+      // console.log("user: ");
+      // console.log(user);
+      // console.log("");
       // ===========================
 
       // if token has a value then set headers to contain token otherwise set headers to empty object
       // (otherwise headers will be a null string)
       const headers = token ? { authtoken: token } : {};
+      // Test ======================
+      // console.log("headers: ");
+      // console.log(headers);
+      // console.log("articleName: ");
+      // console.log(articleName);
+      // ===========================
       const response = await axios.get(`/api/articles/${articleName}`, {
         headers,
       });
       // Test ======================
-      //   console.log("==== after get article ====");
-      //   console.log("headers: ");
-      //   console.log(headers);
-      //   console.log("response: ");
-      //   console.log(response);
-      //   console.log("");
+      // console.log("==== after get article ====");
+      // console.log("headers: ");
+      // console.log(headers);
+      // console.log("response: ");
+      // console.log(response);
+      // console.log("");
       // ===========================
 
       const newArticleInfo = response.data;
       // Test ======================
-      //   console.log("==== newArticleInfo ====");
-      //   console.log("newArticleInfo: ");
-      //   console.log(newArticleInfo);
-      //   console.log("");
+      // console.log("==== newArticleInfo ====");
+      // console.log("newArticleInfo: ");
+      // console.log(newArticleInfo);
+      // console.log("");
       // ===========================
 
       setArticleInfo(newArticleInfo);
@@ -71,14 +77,15 @@ const ArticlePage = () => {
     if (!isLoading) {
       loadArticleInfo();
     }
-    //callCountUseEffect++;
+    // callCountUseEffect++;
+    // console.log("callCountUseEffect: " + callCountUseEffect);
   }, [isLoading, articleName, user]);
 
   const article = articles.find((article) => article.name === articleName);
-  //   console.log("==== after find article ====");
-  //   console.log("article: ");
-  //   console.log(article);
-  //   console.log("");
+  // console.log("==== after find article ====");
+  // console.log("article: ");
+  // console.log(article);
+  // console.log("");
   // ===========================
 
   const addUpvote = async () => {
